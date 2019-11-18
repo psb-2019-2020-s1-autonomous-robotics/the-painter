@@ -1,0 +1,50 @@
+'''
+#!/usr/bin/env pybricks-micropython
+
+from pybricks import ev3brick as brick
+from pybricks.ev3devices import (Motor, TouchSensor, ColorSensor,
+                                 InfraredSensor, UltrasonicSensor, GyroSensor)
+from pybricks.parameters import (Port, Stop, Direction, Button, Color,
+                                 SoundFile, ImageFile, Align)
+from pybricks.tools import print, wait, StopWatch
+from pybricks.robotics import DriveBase
+# Write your program here
+brick.sound.beep()
+from pybricks import ev3brick as brick
+from pybricks.ev3devices import Motor
+from pybricks.parameters import Port
+# Play a sound
+brick.sound.beep()
+#initialize a motor at port B
+wheel_motor=Motor(Port.A)
+wheel_motor2=Motor(Port.B)
+paint_motor=Motor(Port.C)
+paint_motor2=Motor(Port.D)
+touch_sensorblack=TouchSensor(Port.S1)
+touch_sensorred=TouchSensor(Port.S2)
+#Play another beep sound
+#This time with another pitch (1000 Hz) and longer duration (500 ms)
+brick.sound.beep(1000, 500)
+#Make the light red
+brick.light(Color.RED)
+#Print hello near the middle of the screen
+brick.display.text("Painting Machine", (20,50))
+brick.display.text("By Philip and Sota", (18,60))
+# This will paint when the touch sensor is pressed
+while True:
+    if touch_sensorred.pressed():
+        wheel_motor.run(-300)
+        wheel_motor2.run(-50)
+        paint_motor.run(-500)
+        paint_motor2.run(-500)
+    elif touch_sensorblack.pressed():
+        wheel_motor.run(-300)
+        wheel_motor2.run(-300)
+        paint_motor.run(-500)
+        paint_motor2.run(-500)
+    else:
+        wheel_motor.stop(Stop.BRAKE)
+        wheel_motor2.stop(Stop.BRAKE)
+        paint_motor.stop(Stop.BRAKE)
+        paint_motor2.stop(Stop.BRAKE)
+'''
